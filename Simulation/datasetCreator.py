@@ -13,14 +13,14 @@ wind_speed = np.random.uniform(0, 20, num_samples) # m/s
 target_distance = np.random.uniform(5000, 20000, num_samples) # m
 initial_thrust = np.random.uniform(2000, 5000, num_samples)
 thrust_duration = np.random.uniform(1, 4, num_samples)
-mass = np.random.uniform(100, 200, num_samples) # kg
+initial_mass = np.random.uniform(100, 200, num_samples) # kg
 drag_coefficient = 2 # kg/s
 
 # Calculating trajectories
 trajectories = []
-for speed, angle, wind, target, thrust in zip(initial_speed, launch_angle, wind_speed,
+for speed, angle, wind, target, thrust, thrust_duration, mass in zip(initial_speed, launch_angle, wind_speed,
                                               target_distance, initial_thrust, thrust_duration,
-                                              mass):
+                                              initial_mass):
     angle_rad = np.radians(angle)
     max_height = (speed ** 2) * (np.sin(angle_rad) ** 2) / (2 * GRAVITY)
     # Max range without wind
@@ -37,7 +37,7 @@ data = pd.DataFrame({
     "Launch Angle": launch_angle,
     "Initial Thrust": initial_thrust,
     "Thrust Duration": thrust_duration,
-    "Mass": mass,
+    "Mass": initial_mass,
     "Wind Speed": wind_speed,
     "Drag Coefficient": drag_coefficient,
     "Target Distance": target_distance,

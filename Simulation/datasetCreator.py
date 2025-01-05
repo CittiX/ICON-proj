@@ -13,7 +13,7 @@ wind_speed = np.random.uniform(0, 20, num_samples) # m/s
 target_distance = np.random.uniform(5000, 20000, num_samples) # m
 initial_thrust = np.random.uniform(2000, 5000, num_samples)
 thrust_duration = np.random.uniform(1, 4, num_samples)
-mass = 100 # kg
+mass = np.random.uniform(100, 200, num_samples) # kg
 drag_coefficient = 2 # kg/s
 
 # Calculating trajectories

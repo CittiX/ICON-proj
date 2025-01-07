@@ -1,1 +1,1 @@
-# ICON-proj
+# Progetto per Ingegneria della CONoscenza

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-np.random.seed(42)
+np.random.seed(42) # Remove if random values are desired
 missile_conf = {
     'gravity': 9.81,  # m/s^2
     'drag_coefficient': np.random.uniform(1.8, 2.2),  # kg/s

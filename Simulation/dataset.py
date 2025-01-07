@@ -1,6 +1,7 @@
 from missile_sim import missile as missile_obj
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def noisy_data(missile_obj, n_points=8):
     """
@@ -32,9 +33,24 @@ def show_noisy_data(data, title, x_label, y_label):
     plt.ylabel(y_label, fontsize=12)
     plt.show()
 
+def export_dataset(noisy_data, filename="dataset.csv"):
+    """
+    Export noisy data to a .csv file
+    :param noisy_data: Data to be exported
+    :param filename: Name of the output file
+    :return: .csv file
+    """
+    # Since the dataset has two columns noisy data are being converted to DataFrame
+    data_frame = pd.DataFrame(noisy_data, columns=["X Displacement", "Y Displacement"])
 
-# Generate noisy data
+    # Export to .csv
+    data_frame.to_csv(filename, index=False)
+
+
+# Generate noisy data and extract to .csv
 noisy_targets = noisy_data(missile_obj)
+
+export_dataset(noisy_targets)
 
 # Show the graph
 show_noisy_data(noisy_targets, "Noisy Data",

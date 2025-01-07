@@ -11,8 +11,11 @@ missile_conf = {
     'mass': np.random.uniform(100, 200)  # kg
 }
 
-
+# This class models a missile launched by a SAM
 class Missile:
+    # IDEs can't recognize attributes dynamically assigned to classes,
+    # therefore missile_conf keys will eventually turnt into attributes of this class
+    # and treated as such
     def __init__(self, conf):
         for key, value in conf.items():
             setattr(self, key, value)

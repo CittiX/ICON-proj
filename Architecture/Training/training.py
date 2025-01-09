@@ -1,4 +1,5 @@
 import numpy as np
+from Architecture.Simulation.dataset import noisy_targets
 
 def pre_training(noisy_data):
     """
@@ -13,6 +14,8 @@ def pre_training(noisy_data):
     inputs = np.linspace(0, n_samples - 1, n_samples)
 
     return inputs, samples
+
+inputs, samples = pre_training(noisy_targets)
 
 # Dictionary containing hyperparameters for model training
 training_conf = {

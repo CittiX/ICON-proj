@@ -1,4 +1,4 @@
-from missile_sim import missile as missile_obj
+from Architecture.Simulation.missile_sim import missile as missile_obj
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd

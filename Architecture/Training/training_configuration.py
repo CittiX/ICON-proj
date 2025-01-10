@@ -2,6 +2,17 @@ import numpy as np
 
 from Architecture.Simulation.dataset import noisy_targets
 
+
+# Dictionary containing hyperparameters for model training
+training_conf = {
+    "net_depth": 50,  # Number of hidden layers
+    "learning_rate": 0.025,
+    "batch_size": 64,  # Number of examples to split the dataset in
+    "epochs": 1000,
+    "anim_record_freq": 3,  # The higher the number the fewer animation frames are recorded
+    "anim_frame_duration": 20,  # Duration (ms) of each frame
+}
+
 def pre_training(noisy_data):
     """
     This function prepares the noisy data for PINN training.

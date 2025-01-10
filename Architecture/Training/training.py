@@ -44,7 +44,8 @@ def train_one_epoch(model, inputs, targets, optimizer):
     predictions = model(inputs)
 
     # Compute the mean squared error loss
-    loss = nn.MSELoss(predictions, targets)  # To print loss use loss.item()
+    criterion = nn.MSELoss()
+    loss = criterion(predictions, targets)  # To print loss use loss.item()
 
     # Backward pass
     optimizer.zero_grad()

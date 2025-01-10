@@ -1,9 +1,9 @@
-from matplotlib import animation
-from IPython.display import HTML
 import matplotlib.pyplot as plt
+from matplotlib import animation
 
 from Architecture.Simulation.dataset import noisy_targets
-from Architecture.Training.training import training_conf, eval_pred
+from Architecture.Training.training_configuration import training_conf
+from Architecture.Training.training import eval_pred
 
 
 def show_animation(eval_pred, targets, conf=training_conf):
@@ -24,8 +24,8 @@ def show_animation(eval_pred, targets, conf=training_conf):
     def animate(i):
         scatter_true.set_data(targets[:, 0], targets[:, 1])
         predictions = eval_pred[i]
-        dom_second_indices = [*range(0, 300, 10)]
-        scatter2.set_data(predictions[:, 0], predictions[dom_second_indices, 1])
+        dom_second_indices = [*range(0, len(predictions), 10)]
+        scatter2.set_data(predictions[dom_second_indices, 0], predictions[dom_second_indices, 1])
         line.set_data(predictions[:, 0], predictions[:, 1])
 
         return scatter_true, line
@@ -39,5 +39,5 @@ def show_animation(eval_pred, targets, conf=training_conf):
 
 anim = show_animation(eval_pred, noisy_targets)
 
-# Display
-HTML(anim.to_jshtml())
+# UNCOMMENT if you want the animation to be saved as .gif
+# anim.save("training_animation.gif", writer="pillow", fps=10)

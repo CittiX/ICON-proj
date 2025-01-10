@@ -88,7 +88,7 @@ def train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, epochs
     for epoch in range(epochs):
         train_one_epoch(model, in_tensor, out_tensor, optimizer)
         if epoch % freq == 0:
-            eval_pred.append(eval_pred(model, dom_tensor))
+            eval_pred.append(make_eval_pred(model, dom_tensor))
 
     return eval_pred
 

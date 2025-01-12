@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from Architecture.Training.training_configuration import training_conf
-from Architecture.Training.training_configuration import inputs, samples as targets
+from Architecture.Supervised_learning.training_configuration import training_conf
+from Architecture.Supervised_learning.training_configuration import inputs, samples as targets
 
 # Input is time (1D) and output is (x,y) coordinates vector (2D)
 input_dim = 1

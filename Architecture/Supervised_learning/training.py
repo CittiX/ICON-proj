@@ -91,7 +91,7 @@ def show_computed_thrust():
     highlighted_thrust = compute_thrust(highlighted_t)
 
     plt.figure(figsize=(8, 4))
-    plt.plot(time_dom, thrust_curve, color="#BBBBBB", label="Thrust Curve", zorder=1)
+    plt.plot(time_dom, thrust_curve, color="#9effe8", label="Thrust Curve", zorder=1)
     plt.scatter(highlighted_t, highlighted_thrust, c="#444444", zorder=2)
 
     # Annotate highlighted points

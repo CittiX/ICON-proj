@@ -33,7 +33,7 @@ def show_animation(eval_pred, targets, conf=training_conf):
     anim = animation.FuncAnimation(fig, animate, init_func=init, blit=True, frames=len(eval_pred),
                                    interval=conf["anim_frame_duration"])
     plt.legend(loc="lower center", fontsize="small")
-    plt.title("Neural Network Supervised_learning")
+    plt.title("Neural Network Training")
     plt.close(fig)
 
     return anim

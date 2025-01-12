@@ -8,8 +8,8 @@ from Architecture.Training.training import eval_pred
 
 def show_animation(eval_pred, targets, conf=training_conf):
     fig, ax = plt.subplots()
-    ax.set_xlim(-50, 500)
-    ax.set_ylim(-50, 500)
+    ax.set_xlim(-50, 300)
+    ax.set_ylim(-50, 850)
 
     scatter_true, = ax.plot([], [], 'o', markersize=4, label="Ground Truths", c="#fc0303")
     scatter2, = ax.plot([], [], 'x', markersize=4, label="Predicted Points", c="#4242f5")

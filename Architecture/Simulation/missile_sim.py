@@ -7,11 +7,11 @@ seed = 42
 np.random.seed(seed)
 missile_conf = {
     'gravity': 9.81,  # m/s^2
-    'drag_coefficient': np.random.uniform(1.8, 2.2),  # kg/s
-    'launch_angle': np.random.uniform(0, np.pi / 2),  # radians. Limited to [0, pi/2] so that it just plots non-negative values
-    'initial_thrust': np.random.uniform(2000, 5500),  # N
-    'thrust_duration': np.random.uniform(1.2, 2.2),  # s
-    'mass': np.random.uniform(100, 200)  # kg
+    'drag_coefficient': 3,  # kg/s
+    'launch_angle': np.radians(85),  # radians
+    'initial_thrust': 5500,  # N
+    'thrust_duration': 3,  # s
+    'mass': 100  # kg
 }
 
 # This class models a missile launched by a SAM

@@ -26,8 +26,8 @@ def noisy_data(missile_obj, n_points=8):
 
 def show_noisy_data(data, title, x_label, y_label):
     plt.scatter(data[:, 0], data[:, 1], c="#34EBCC")
-    plt.xlim(-10, 500)
-    plt.ylim(-10, 350)
+    plt.xlim(-10, 300)
+    plt.ylim(-10, 850)
     plt.title(title)
     plt.xlabel(x_label, fontsize=12)
     plt.ylabel(y_label, fontsize=12)

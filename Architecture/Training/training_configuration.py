@@ -10,7 +10,7 @@ training_conf = {
     "batch_size": 64,  # Number of examples to split the dataset in
     "epochs": 1000,
     "anim_record_freq": 3,  # The higher the number the fewer animation frames are recorded
-    "anim_frame_duration": 20,  # Duration (ms) of each frame
+    "anim_frame_duration": 40,  # Duration (ms) of each frame
 }
 
 def pre_training(noisy_data):

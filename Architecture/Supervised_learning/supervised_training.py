@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from Architecture.Simulation.missile_sim import missile
 from Architecture.Supervised_learning.physics_loss import compute_physics_loss
 from Architecture.Supervised_learning.training import gen_eval_domain, train_and_record
 from Architecture.Supervised_learning.training_visualizer import show_animation

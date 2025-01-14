@@ -1,9 +1,7 @@
-import numpy as np
 import torch
 
-from Architecture.Supervised_learning.training import gen_eval_domain
 from Architecture.Simulation.missile_sim import missile
-from Architecture.Supervised_learning.supervised_training import learnable_constants
+from Architecture.Supervised_learning.training import gen_eval_domain
 
 
 def compute_physics_loss(model, constants, constant_scale_factors, physics_weight=10):

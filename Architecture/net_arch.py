@@ -1,7 +1,9 @@
 import torch
 import torch.nn as nn
+
+from Architecture.Supervised_learning.training_configuration import inputs
+from Architecture.Supervised_learning.training_configuration import samples as targets
 from Architecture.Supervised_learning.training_configuration import training_conf
-from Architecture.Supervised_learning.training_configuration import inputs, samples as targets
 
 # Input is time (1D) and output is (x,y) coordinates vector (2D)
 input_dim = 1
@@ -25,5 +27,3 @@ optimizer = torch.optim.Adam(model.parameters(), lr=training_conf["learning_rate
 # Use tensors to integrate GPU computing
 in_tensor = torch.tensor(inputs, dtype=torch.float).view(-1, 1)
 out_tensor = torch.tensor(targets, dtype=torch.float).view(-1, 2)
-
-

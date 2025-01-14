@@ -9,10 +9,11 @@ missile_conf = {
     'gravity': 9.81,  # m/s^2
     'drag_coefficient': 3,  # kg/s
     'launch_angle': np.radians(85),  # radians
-    'initial_thrust': 5500,  # N
-    'thrust_duration': 3,  # s
+    'initial_thrust': 5000,  # N
+    'thrust_duration': 2,  # s
     'mass': 100  # kg
 }
+
 
 # This class models a missile launched by a SAM
 class Missile:
@@ -64,8 +65,6 @@ class Missile:
 
             # End simulation if missile hits the ground interpolating the ground impact point
             if self.pos_arr[step, 1] < 0:
-                t = -self.pos_arr[step -1, 1] / (self.pos_arr[step, 1] - self.pos_arr[step -1, 1])
-                self.pos_arr[step, :] = self.pos_arr[step - 1, :] + t * (self.pos_arr[step, :] - self.pos_arr[step -1, :])
                 self.pos_arr = self.pos_arr[:step, :]
                 break
 
@@ -79,20 +78,20 @@ class Missile:
 
         # Line plot for missile
         ballistic_graph, = plt.plot(self.pos_arr[:, 0],
-                                   self.pos_arr[:, 1],
-                                   c=color,
-                                   alpha=0.5,
-                                   lw=2,
-                                   ls="-.",
-                                   label="Ballistic trajectory")
+                                    self.pos_arr[:, 1],
+                                    c=color,
+                                    alpha=0.6,
+                                    lw=2,
+                                    ls="-.",
+                                    label="Ballistic trajectory")
 
         # Show the boost phase
         boost_end_index = int(self.thrust_duration / self.dt)
         boost_graph, = plt.plot(self.pos_arr[:boost_end_index, 0],
-                               self.pos_arr[:boost_end_index, 1],
-                               c=color,
-                               lw=2,
-                               label="Boost trajectory")
+                                self.pos_arr[:boost_end_index, 1],
+                                c=color,
+                                lw=2,
+                                label="Boost trajectory")
 
         # Show every passed second as a 'scatter point'
         actual_timesteps = self.pos_arr.shape[0]
@@ -117,4 +116,3 @@ class Missile:
 missile = Missile(missile_conf)
 missile.simulate()
 missile.show_trajectory()
-

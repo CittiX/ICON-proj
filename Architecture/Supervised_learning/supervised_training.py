@@ -10,8 +10,8 @@ from Architecture.Supervised_learning.physics_loss import compute_physics_loss
 from Architecture.Supervised_learning.training import gen_eval_domain, train_and_record
 from Architecture.Supervised_learning.training_visualizer import show_animation
 from Architecture.net_arch import input_dim, hidden_dim, output_dim
-from training_configuration import training_conf
 from Architecture.net_arch import inputs, targets
+from training_configuration import training_conf
 
 # Arrange config settings
 training_conf["epochs"] = 3000
@@ -31,6 +31,7 @@ optimizer = optim.Adam(model.parameters(), lr=training_conf["learning_rate"])
 input_tensor = torch.tensor(inputs, dtype=torch.float).view(-1, 1)
 target_tensor = torch.tensor(targets, dtype=torch.float).view(-1, 2)
 
+
 def train_one_epoch(model, inputs, targets, optimizer):
     """
     A remake of train_one_epoch function of training.py.
@@ -40,7 +41,7 @@ def train_one_epoch(model, inputs, targets, optimizer):
     predictions = model(inputs)
 
     # Mean squared loss
-    criterion = nn.MSELoss()
+    criterion = nn.MSELoss(reduction="sum")
     mse_loss = criterion(predictions, targets)
 
     # Physics loss
@@ -53,6 +54,7 @@ def train_one_epoch(model, inputs, targets, optimizer):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
+
 
 # Domain over which NN will be evaluated
 dom_tensor = gen_eval_domain(30, 300)

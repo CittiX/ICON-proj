@@ -19,7 +19,7 @@ def train_one_epoch(model, inputs, targets, optimizer):
     predictions = model(inputs)
 
     # Compute the mean squared error loss
-    criterion = nn.MSELoss()
+    criterion = nn.MSELoss(reduction='sum')
     loss = criterion(predictions, targets)  # To print loss use loss.item()
 
     # Backward pass
@@ -67,6 +67,12 @@ def train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, epochs
 
     return eval_pred
 
+# Domain over which NN will be evaluated
+dom_tensor = gen_eval_domain(30, 300)
+
+# Train the NN and record predictions over the whole domain for visualization
+eval_pred = train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, training_conf["epochs"],
+                             training_conf["anim_record_freq"])
 
 def compute_thrust(t, thrust_cease=missile_conf["thrust_duration"] + 1, sharpness=200, offset=0.02):
     """
@@ -105,10 +111,3 @@ def show_computed_thrust():
 
 
 show_computed_thrust()
-
-# Domain over which NN will be evaluated
-dom_tensor = gen_eval_domain(30, 100)
-
-# Train the NN and record predictions over the whole domain for visualization
-eval_pred = train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, training_conf["epochs"],
-                             training_conf["anim_record_freq"])

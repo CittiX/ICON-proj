@@ -6,10 +6,9 @@ from Architecture.Simulation.dataset import noisy_targets
 training_conf = {
     "net_depth": 50,  # Number of hidden layers
     "learning_rate": 0.025,
-    "batch_size": 64,  # Number of examples to split the dataset in
     "epochs": 1000,
     "anim_record_freq": 3,  # The higher the number the fewer animation frames are recorded
-    "anim_frame_duration": 40,  # Duration (ms) of each frame
+    "anim_frame_duration": 20,  # Duration (ms) of each frame
 }
 
 

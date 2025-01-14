@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
-from Architecture.Simulation.dataset import noisy_targets
+from Architecture.Supervised_learning.training_configuration import samples as targets
 from Architecture.Supervised_learning.training import eval_pred
 from Architecture.Supervised_learning.training_configuration import training_conf
 
 
 def show_animation(eval_pred, targets, conf=training_conf):
     fig, ax = plt.subplots()
-    ax.set_xlim(-50, 300)
-    ax.set_ylim(-50, 850)
+    ax.set_xlim(-50, 500)
+    ax.set_ylim(-50, 500)
 
     scatter_true, = ax.plot([], [], 'o', markersize=4, label="Ground Truths", c="#fc0303")
     scatter2, = ax.plot([], [], 'x', markersize=4, label="Predicted Points", c="#4242f5")
@@ -24,7 +24,7 @@ def show_animation(eval_pred, targets, conf=training_conf):
     def animate(i):
         scatter_true.set_data(targets[:, 0], targets[:, 1])
         predictions = eval_pred[i]
-        dom_second_indices = [*range(0, len(predictions), 10)]
+        dom_second_indices = [*range(0, 300, 10)]
         scatter2.set_data(predictions[dom_second_indices, 0], predictions[dom_second_indices, 1])
         line.set_data(predictions[:, 0], predictions[:, 1])
 
@@ -39,7 +39,7 @@ def show_animation(eval_pred, targets, conf=training_conf):
     return anim
 
 
-anim = show_animation(eval_pred, noisy_targets)
+anim = show_animation(eval_pred, targets)
 
 # UNCOMMENT if you want the animation to be saved as .gif
 # anim.save("training_animation.gif", writer="pillow", fps=10)

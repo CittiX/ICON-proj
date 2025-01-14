@@ -47,7 +47,7 @@ def gen_eval_domain(dom_max, dom_n_points):
     return torch.tensor(eval_dom, dtype=torch.float).view(-1, 1)
 
 
-def train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, epochs, freq):
+def train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, epochs, freq, train_one_epoch):
     """
     It trains the NN for given number of epochs recording evaluation predictions for visualization
     :param model: Model of NN to be trained
@@ -72,7 +72,7 @@ dom_tensor = gen_eval_domain(30, 300)
 
 # Train the NN and record predictions over the whole domain for visualization
 eval_pred = train_and_record(model, optimizer, in_tensor, out_tensor, dom_tensor, training_conf["epochs"],
-                             training_conf["anim_record_freq"])
+                             training_conf["anim_record_freq"], train_one_epoch)
 
 def compute_thrust(t, thrust_cease=missile_conf["thrust_duration"] + 1, sharpness=200, offset=0.02):
     """

@@ -21,9 +21,9 @@ training_conf["learning_rate"] = 0.005
 # Reinitialize network, optimizer, input and target tensors
 model = nn.Sequential(
     nn.Linear(input_dim, hidden_dim),
-    nn.ReLU(),
+    nn.GELU(),
     nn.Linear(hidden_dim, hidden_dim),
-    nn.ReLU(),
+    nn.GELU(),
     nn.Linear(hidden_dim, output_dim)
 )
 
@@ -32,7 +32,7 @@ input_tensor = torch.tensor(inputs, dtype=torch.float).view(-1, 1)
 target_tensor = torch.tensor(targets, dtype=torch.float).view(-1, 2)
 
 
-def train_one_epoch(model, inputs, targets, optimizer):
+def train_one_epoch_supervised(model, inputs, targets, optimizer):
     """
     A remake of train_one_epoch function of training.py.
     This uses mean squared error and physics loss.
@@ -62,7 +62,7 @@ dom_tensor = gen_eval_domain(30, 300)
 # Train NN and record predictions over entire domain for visualization
 eval_pred = train_and_record(model, optimizer, input_tensor, target_tensor, dom_tensor,
                              training_conf["epochs"],
-                             training_conf["anim_record_freq"])
+                             training_conf["anim_record_freq"], train_one_epoch_supervised)
 
 # Animation
 anim = show_animation(eval_pred, targets, training_conf)

@@ -16,6 +16,7 @@ from training_configuration import training_conf
 # Arrange config settings
 training_conf["epochs"] = 5000
 training_conf["anim_record_freq"] = 15
+training_conf["learning_rate"] = 0.005
 
 # Initial guesses for parameters are provided
 init_drag_coef = 1

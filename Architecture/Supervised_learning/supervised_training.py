@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+from Architecture.Simulation.missile_sim import missile
 from Architecture.Supervised_learning.physics_loss import compute_physics_loss
 from Architecture.Supervised_learning.training import gen_eval_domain, train_and_record
 from Architecture.Supervised_learning.training_visualizer import show_animation
@@ -76,6 +77,12 @@ dom_tensor = gen_eval_domain(30, 300)
 eval_pred = train_and_record(model, optimizer, input_tensor, target_tensor, dom_tensor,
                              training_conf["epochs"],
                              training_conf["anim_record_freq"], train_one_epoch_supervised)
+
+drag_param_pred = learnable_constants[0].item() * constant_scale_factors["drag_coefficient"]
+thrust_param_pred = learnable_constants[1].item() * constant_scale_factors["thrust_magnitude"]
+
+print(f"Predicted drag force: {drag_param_pred:.2f}\tActual drag force: {missile.drag_coefficient}")
+print(f"Predicted thrust: {thrust_param_pred:.2f}\tActual thrust force: {missile.initial_thrust}")
 
 # Animation
 anim = show_animation(eval_pred, targets, training_conf)

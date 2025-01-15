@@ -15,9 +15,9 @@ hidden_dim = training_conf["net_depth"]
 # Sequential Model configuration
 model = nn.Sequential(
     nn.Linear(input_dim, hidden_dim),
-    nn.ReLU(),
+    nn.GELU(),
     nn.Linear(hidden_dim, hidden_dim),
-    nn.ReLU(),
+    nn.GELU(),
     nn.Linear(hidden_dim, output_dim)
 )
 
